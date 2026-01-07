@@ -1,0 +1,17 @@
+{
+  "lab_results": {
+    "glucose": 130,
+    "blood_pressure_systolic": 145,
+    "blood_pressure_diastolic": 95,
+    "ALT": 45,
+    "AST": 38,
+    "creatinine": 1.1,
+    "white_blood_cells": 9.5
+  },
+  "signals": {
+    "heart_rate": 88,
+    "respiratory_rate": 18,
+    "temperature": 37.2,
+    "oxygen_saturation": 97
+  }
+} 

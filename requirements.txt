@@ -1,0 +1,38 @@
+# Core dependencies
+fastapi
+uvicorn
+python-multipart
+numpy
+pandas
+tensorflow
+scikit-learn
+opencv-python
+pytesseract
+pillow
+python-jose
+passlib
+bcrypt
+python-dotenv
+
+# ML and data processing
+joblib
+matplotlib
+seaborn
+scipy
+torch
+torchvision
+faiss-cpu
+wfdb
+requests
+pydantic
+tqdm
+nltk
+lxml
+h5py
+sqlalchemy
+aiofiles
+
+# AI and chatbot
+langchain
+chromadb
+streamlit 

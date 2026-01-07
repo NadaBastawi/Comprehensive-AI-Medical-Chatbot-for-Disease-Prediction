@@ -1,0 +1,13 @@
+DIAGNOSIS CODE	LONG DESCRIPTION
+250.00	Diabetes mellitus without mention of complication, type II or unspecified type, not stated as uncontrolled
+401.9	Unspecified essential hypertension
+427.31	Atrial fibrillation
+428.0	Congestive heart failure, unspecified
+518.81	Acute respiratory failure
+584.9	Acute kidney failure, unspecified
+410	Acute myocardial infarction
+434	Stroke
+995.91	Sepsis
+427.5	Cardiac arrest
+428.23	Acute on chronic systolic heart failure
+431	Intracerebral hemorrhage 

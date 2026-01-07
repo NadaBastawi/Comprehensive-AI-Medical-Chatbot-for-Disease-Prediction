@@ -1,173 +1,142 @@
+# Medical Signal Processing Chatbot with OCR
 
-# 🧠 Multimodal AI Disease Prediction & Diagnostic Assistant
+A chatbot for medical signal processing and disease prediction, now with OCR capabilities for lab result images.
 
-An **AI-driven multimodal diagnostic system** designed to enhance healthcare decision-making by combining **natural language symptom analysis, medical imaging, physiological signal modeling (EEG, ECG, vital signs), and Retrieval-Augmented Generation (RAG)**.
-The system aims to provide **accurate, explainable, and accessible disease predictions**, particularly for resource-limited and underserved regions.
+## Setup Instructions
 
----
+### Prerequisites
 
-## 📌 Project Motivation
+1. Python 3.7+ with pip
+2. Node.js and npm for the frontend
+3. Tesseract OCR for image processing
 
-Healthcare systems worldwide face critical challenges:
+### Installing Tesseract OCR (Required for OCR functionality)
 
-* Limited access to immediate diagnostic tools
-* Difficulty in accurately interpreting patient-described symptoms
-* Overburdened clinicians and delayed decision-making
-* Fragmented medical data (text, images, signals, documents)
+#### Windows:
+1. Download the installer from UB Mannheim: https://github.com/UB-Mannheim/tesseract/wiki
+2. Run the installer and follow the instructions
+3. Use the default installation path (C:\Program Files\Tesseract-OCR)
+4. Verify the installation by running `tesseract --version` in Command Prompt
+5. **IMPORTANT**: After installation, restart the backend server
 
-Patients often struggle to articulate symptoms clearly, while clinicians lack tools that **unify multimodal patient data into actionable insights**. This project addresses that gap by introducing a **scalable AI-based diagnostic assistant** capable of understanding symptoms, analyzing medical signals and images, and retrieving trusted medical knowledge.
+#### macOS:
+1. Install using Homebrew:
+   ```
+   brew install tesseract
+   ```
+2. Or using MacPorts:
+   ```
+   sudo port install tesseract
+   ```
 
----
+#### Linux:
+Tesseract is available in most Linux distributions' package managers:
+```
+sudo apt-get install tesseract-ocr  # Debian/Ubuntu
+sudo dnf install tesseract          # Fedora
+```
 
-## 🚀 System Overview
+### Running the Application
 
-This project implements a **modular multimodal diagnostic pipeline** that processes:
+1. Start the backend server:
+   ```
+   python run.py
+   ```
+   This will check for required dependencies and start the server.
 
-* 📝 **Natural language symptoms**
-* 🧠 **Physiological signals** (EEG, ECG, vital signs)
-* 🩻 **Medical images** (X-ray, CT, MRI – extensible)
-* 📄 **Medical documents**
-* 📚 **Medical knowledge bases via RAG**
+2. Start the frontend development server:
+   ```
+   cd frontend
+   npm start
+   ```
 
-The system integrates these modalities to generate:
+3. Open your browser to http://localhost:3000
 
-* Disease predictions
-* Confidence-aware model outputs
-* Evidence-backed medical explanations and recommendations
+## Features
 
----
+- Medical chatbot that processes symptom descriptions
+- Signal image processing and analysis
+- OCR for lab result images - upload your lab results and get automatic analysis
+- Disease prediction based on symptoms and lab values
 
-## 🏗️ Architecture Highlights
+## Testing With Lab Results
 
-* **NLP-based Symptom Extraction Layer**
-* **Deep Learning Signal Models (EEG, ECG, vitals)**
-* **Medical Image Analysis (CNN-based)**
-* **Multimodal Fusion Engine**
-* **Retrieval-Augmented Generation (RAG) Layer**
-* **Interactive Multimodal Chatbot Interface**
+1. Upload a lab result image using the "Upload Lab Results" button
+2. The system will automatically extract values like:
+   - Hemoglobin, Glucose, White Blood Cells, etc.
+   - These values will appear in the blue box when detected
+3. Enter symptoms or additional information in the text area
+4. Click "Analyze" to get a diagnosis based on both your text input AND the lab values
 
-The modular design ensures **scalability, maintainability, and easy integration of future healthcare technologies**.
+## Troubleshooting OCR
 
----
+If OCR is not working:
 
-## 🧪 Key Results & Achievements
+1. Make sure Tesseract OCR is properly installed (see installation instructions above)
+2. Ensure the image is clear and contains visible text with lab values
+3. Try using a different image format (PNG or JPEG) 
+4. Check for error messages in the red error box that appears when OCR fails
+5. Restart the backend server after installing Tesseract
+6. If OCR still fails, you can manually add lab values by typing them in the text area:
+   ```
+   I have the following lab results:
+   Glucose: 120
+   Hemoglobin: 13.5
+   White blood cells: 7.2
+   ```
 
-| Component                            | Dataset                         | Model                  | Performance                      |
-| ------------------------------------ | ------------------------------- | ---------------------- | -------------------------------- |
-| Symptom-based disease prediction     | Curated medical symptom dataset | Neural Network         | **88% Accuracy**                 |
-| Vital signs & time-series prediction | **MIMIC-IV**                    | **Bi-Directional GRU** | **89% Accuracy**                 |
-| EEG & ECG signal modeling            | Public EEG/ECG datasets         | CNN + RNN variants     | Stable, confidence-aware outputs |
-| RAG-based medical retrieval          | Curated medical sources         | RAG Pipeline           | High factual relevance           |
+## Patient Data Format
 
-✔ Successfully integrated **clinical time-series modeling** using **MIMIC-IV**
-✔ Implemented **bidirectional GRU** for temporal dependency learning
-✔ Designed system for **confidence-aware predictions**
-✔ Identified and documented real-world challenges (dataset imbalance, compute constraints)
+The system expects patient data in the following JSON format:
 
----
+```json
+{
+  "lab_results": {
+    "glucose": 120,
+    "hemoglobin": 13.5,
+    "white_blood_cells": 7.2,
+    // ... other lab results
+  },
+  "signals": {
+    "heart_rate": 80,
+    "respiratory_rate": 16,
+    "temperature": 37.5,
+    // ... other signal measurements
+  }
+}
+```
 
-## 🧠 Signal Intelligence (Core Contribution)
+## Supported Disease Conditions
 
-A major contribution of this project is **physiological signal modeling**, including:
+The system can diagnose multiple conditions including:
+- Type 2 Diabetes Mellitus
+- Hypertension
+- Atrial Fibrillation
+- Congestive Heart Failure
+- Acute Respiratory Failure
+- Acute Kidney Failure
+- Pneumonia
+- Hypercholesterolemia
+- Iron Deficiency Anemia
+- Hypothyroidism
 
-* **EEG signals** – neurological condition insights
-* **ECG signals** – cardiac pattern recognition
-* **Vital signals** – mortality and outcome prediction
+## Future Extensions
 
-Using **MIMIC-IV**, we trained a **Bi-Directional GRU** to capture long-term temporal dependencies in patient vitals, achieving **89% accuracy**, outperforming several baseline temporal models.
+The system is designed to be extended with:
+- EEG signal processing
+- ECG analysis
+- More sophisticated medical signal processing algorithms
+- Additional disease prediction models
+- Real-time signal monitoring
 
----
+## Contributing
 
-## 📚 Retrieval-Augmented Generation (RAG)
+1. Fork the repository
+2. Create a feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-The RAG layer enhances diagnostic reliability by:
+## License
 
-* Retrieving **trusted medical knowledge** linked to predicted diseases
-* Generating **explainable, evidence-backed responses**
-* Providing **doctor and treatment recommendations** (location-aware – extensible)
-
-This ensures predictions are **not black-box outputs**, but supported by **retrieved clinical knowledge**.
-
----
-
-## 🤖 Multimodal Chatbot Interface
-
-* Natural language interaction
-* Accepts symptoms, images, signals, and documents
-* Unified response generation
-* Designed for both **patients and healthcare professionals**
-
----
-
-## 🧩 Development Phases
-
-### **Phase 1 – Foundation**
-
-* NLP symptom extraction
-* Disease prediction model
-* Initial system integration
-
-### **Phase 2 – Image & Signal Analysis**
-
-* EEG, ECG, and vital signal preprocessing
-* Deep learning models for signals and images
-* Multimodal integration
-
-### **Phase 3 – RAG Implementation**
-
-* Medical knowledge retrieval
-* Evidence-grounded recommendations
-* Optimization and testing
-
-### **Phase 4 – Deployment & Chatbot**
-
-* Multimodal chatbot integration
-* End-to-end testing
-* Deployment readiness
-
----
-
-## ⚠️ Challenges & Insights
-
-* Dataset limitations and class imbalance
-* High computational cost of multimodal training
-* Confidence calibration for medical predictions
-
-These challenges were addressed through **iterative refinement**, model benchmarking, and architecture optimization.
-
----
-
-## 🔮 Future Work
-
-* Clinical validation and trials
-* Expanded multimodal fusion strategies
-* Real-time medical imaging integration
-* Global deployment and multilingual support
-* Enhanced uncertainty estimation for clinical safety
-
----
-
-## 🧬 Impact
-
-This project demonstrates how **AI can meaningfully support healthcare systems** by:
-
-* Improving diagnostic accessibility
-* Reducing clinician workload
-* Lowering healthcare costs
-* Enhancing patient outcomes
-
-It lays the groundwork for a **comprehensive digital healthcare platform** capable of scaling globally.
-
----
-
-## 📎 Technologies Used
-
-* Python, PyTorch / TensorFlow
-* NLP (Symptom Extraction)
-* CNNs, Bi-Directional GRU
-* EEG / ECG Signal Processing
-* MIMIC-IV Dataset
-* Retrieval-Augmented Generation (RAG)
-* Multimodal AI Systems
-
-
+MIT License 
